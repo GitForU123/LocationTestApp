@@ -22,8 +22,8 @@ pipeline {
         stage('Test'){
             steps{
 
-    sh '/usr/bin/npm install'  
-   sh 'npm run test --watchAll'
+    sh 'npx install'  
+   sh 'npx run test --watchAll'
             }
  }
 
