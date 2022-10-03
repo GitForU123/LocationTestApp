@@ -23,7 +23,7 @@ pipeline {
             steps{
 
             
-   sh 'npx run test --watchAll'
+   bat 'npx run test --watchAll'
             }
  }
 
