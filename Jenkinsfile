@@ -7,7 +7,11 @@ pipeline {
     stages {
         // implicit checkout stage
         stage('CheckOut'){
+            steps{
+
+            
     git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
+            }
  }
 
         // stage('Build') {
@@ -16,7 +20,11 @@ pipeline {
         //     }
         // }
         stage('Test'){
+            steps{
+
+            
    bat 'npm run test --watchAll'
+            }
  }
 
     }
