@@ -4,6 +4,7 @@
 pipeline {
     agent any
     // triggers { pollSCM('* * * * *') }
+    tools {nodejs "Node"}
     stages {
         // implicit checkout stage
         stage('CheckOut'){
