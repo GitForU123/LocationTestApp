@@ -23,7 +23,7 @@ pipeline {
             steps{
 
             
-   sh 'npm run test --watchAll'
+   sh 'npx run test --watchAll'
             }
  }
 
