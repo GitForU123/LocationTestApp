@@ -23,7 +23,7 @@ pipeline {
             steps{
 
             
-   bat 'npm run test --watchAll'
+   sh 'npm run test --watchAll'
             }
  }
 
