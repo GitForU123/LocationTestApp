@@ -4,7 +4,10 @@
 pipeline {
     agent any
     // triggers { pollSCM('* * * * *') }
-    tools {nodejs "Node"}
+    // tools {nodejs "Node"}
+     parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    }
     stages {
         // implicit checkout stage
         stage('CheckOut'){
@@ -20,13 +23,18 @@ pipeline {
         //         sh './mvnw clean package'
         //     }
         // }
-        stage('Test'){
-            steps{
-
-    sh 'npm install' 
-   sh 'npm run test --watchAll'
+       stage('Example') {
+            steps {
+                echo "${params.Greeting} World!"
             }
- }
+        }
+//         stage('Test'){
+//             steps{
+
+//     sh 'npm install' 
+//    sh 'npm run test --watchAll'
+//             }
+//  }
 
     }
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
