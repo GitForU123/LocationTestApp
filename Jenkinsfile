@@ -4,7 +4,7 @@
 pipeline {
     agent any
     // triggers { pollSCM('* * * * *') }
-    // tools {nodejs "Node"}
+    tools {tool 'SQInstance1'}
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
@@ -30,10 +30,10 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps{
-    def scannerHome = tool 'SQInstance1';
-    withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
+//     def scannerHome = tool 'SQInstance1';
+//     withSonarQubeEnv() {
+      sh "${tool 'SQInstance1'}/bin/sonar-scanner"
+//     }
             }
   }
 //         stage('Test'){
