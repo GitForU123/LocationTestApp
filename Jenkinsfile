@@ -47,7 +47,9 @@ pipeline {
 //          sh "SQInstance1/bin/sonar-scanner"
 //              sh "${scannerHome}/bin/sonar-scanner"
         echo 'sonarqube is running'
+        withMaven(maven : 'maven 3.8.6'){
         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+        }
     }
             }
   }
