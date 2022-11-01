@@ -4,7 +4,7 @@
 pipeline {
     agent any
     // triggers { pollSCM('* * * * *') }
-    tools {tool 'SQInstance1'}
+//     tools {tool 'SQInstance1'}
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
@@ -31,9 +31,10 @@ pipeline {
         stage('SonarQube Analysis') {
             steps{
 //     def scannerHome = tool 'SQInstance1';
-//     withSonarQubeEnv() {
-      sh "${tool 'SQInstance1'}/bin/sonar-scanner"
-//     }
+    withSonarQubeEnv(installationName : 'SQInstance1') {
+//       sh "${tool 'SQInstance1'}/bin/sonar-scanner"
+         sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+    }
             }
   }
 //         stage('Test'){
