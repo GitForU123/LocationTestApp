@@ -28,25 +28,27 @@ pipeline {
                 echo "${params.Greeting} World!"
             }
         }
+             stage('Test'){
+            steps{
+
+    sh 'npm install' 
+   sh 'npm run test --watchAll'
+            }
+ }
         stage('SonarQube Analysis') {
             steps{
-    def scannerHome = tool 'SQInstance1';
-                //installationName : 'SQInstance1'
-    withSonarQubeEnv() {
+//     def scannerHome = tool 'SQInstance1';
+                
+    withSonarQubeEnv(installationName : 'SQInstance1') {
 //       sh "${tool 'SQInstance1'}/bin/sonar-scanner"
 //          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
 //          sh "SQInstance1/bin/sonar-scanner"
-             sh "${scannerHome}/bin/sonar-scanner"
+//              sh "${scannerHome}/bin/sonar-scanner"
+        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
             }
   }
-//         stage('Test'){
-//             steps{
-
-//     sh 'npm install' 
-//    sh 'npm run test --watchAll'
-//             }
-//  }
+   
 
     }
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
