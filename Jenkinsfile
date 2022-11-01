@@ -33,7 +33,8 @@ pipeline {
 //     def scannerHome = tool 'SQInstance1';
     withSonarQubeEnv(installationName : 'SQInstance1') {
 //       sh "${tool 'SQInstance1'}/bin/sonar-scanner"
-         sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+//          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+         sh "${installationName}/bin/sonar-scanner"
     }
             }
   }
