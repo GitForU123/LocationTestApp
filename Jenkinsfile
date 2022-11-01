@@ -30,9 +30,11 @@ pipeline {
         }
              stage('Test'){
             steps{
-
+                nodejs(nodeJSInstallationName: 'NodeJS1'){
+    echo 'nodejs tool is running'
     sh 'npm install' 
    sh 'npm run test --watchAll'
+                }
             }
  }
         stage('SonarQube Analysis') {
@@ -44,6 +46,7 @@ pipeline {
 //          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
 //          sh "SQInstance1/bin/sonar-scanner"
 //              sh "${scannerHome}/bin/sonar-scanner"
+        echo 'sonarqube is running'
         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
             }
