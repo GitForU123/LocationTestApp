@@ -42,14 +42,15 @@ pipeline {
 //     def scannerHome = tool 'SQInstance1';
                 
     withSonarQubeEnv(installationName : 'SQInstance1') {
-//       sh "${tool 'SQInstance1'}/bin/sonar-scanner"
+
 //          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
 //          sh "SQInstance1/bin/sonar-scanner"
 //              sh "${scannerHome}/bin/sonar-scanner"
         echo 'sonarqube is running'
-        withMaven(maven : 'maven 3.8.6'){
-        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-        }
+              sh "${tool 'SQInstance1'}/bin/sonar-scanner"
+//         withMaven(maven : 'maven 3.8.6'){
+//         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+//         }
     }
             }
   }
