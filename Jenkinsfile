@@ -45,7 +45,9 @@ pipeline {
                         }
 
                 
-    withSonarQubeEnv(installationName : 'SQInstance1') {
+    withSonarQubeEnv(installationName : 'SQInstance1', evnOnley : true, credentialsId : 'squ_0683a18d00cfb6d425d2f66f1fa3f5029f599637') {
+         println ${env.SONAR_HOST_URL} 
+        println ${env.SONAR_AUTH_TOKEN}
         echo 'sonarqube is running'
         sh "${scannerHome}/bin/sonar-scanner"
     }
