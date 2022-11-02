@@ -39,7 +39,11 @@ pipeline {
  }
         stage('SonarQube Analysis') {
             steps{
-//     def scannerHome = tool 'SQInstance1';
+                //     def scannerHome = tool 'SQ1';
+                script {
+                    scannerHome = tool 'SQ1'
+                        }
+
                 
     withSonarQubeEnv(installationName : 'SQInstance1') {
 
@@ -47,16 +51,16 @@ pipeline {
 //          sh "SQInstance1/bin/sonar-scanner"
 //              sh "${scannerHome}/bin/sonar-scanner"
         echo 'sonarqube is running'
-              sh "${tool 'SQInstance1'}/bin/sonar-scanner"
+//               sh "${tool 'SQInstance1'}/bin/sonar-scanner"
 //         withMaven(maven : 'maven 3.8.6'){
 //         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-//         }
+        
+             sh 'sonar-scanner'
     }
             }
   }
    
-
-    }
+}
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
     // post {
     //     always {
