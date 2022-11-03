@@ -45,7 +45,7 @@ pipeline {
                         }
 
                 
-    withSonarQubeEnv(installationName : 'SQInstance1', envOnly : true, credentialsId : 'rnlocprojkey') {
+    withSonarQubeEnv(installationName : 'SQInstance1') {
          println "${env.SONAR_HOST_URL}" 
         println "${env.SONAR_AUTH_TOKEN}"
         echo 'sonarqube is running'
