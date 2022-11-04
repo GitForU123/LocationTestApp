@@ -1,11 +1,11 @@
 package com.rnlocation
 def start(){
-   pipeline {
-    agent any
-     parameters {
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
-    }
-    stages {
+//    pipeline {
+//     agent any
+//      parameters {
+//         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+//     }
+//     stages {
         // implicit checkout stage
         stage('CheckOut'){
             gitClone()
@@ -21,7 +21,7 @@ def start(){
            
   }
    
-}
+// }
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
     post {
         always {
@@ -29,7 +29,7 @@ def start(){
             archiveArtifacts '**/*.html'
         }
     }
-}
+// }
 }
 
 def gitClone(){
