@@ -1,7 +1,7 @@
 package com.rnlocation
 def start(){
-//  pipeline {
-//     agent any
+ pipeline {
+    agent any
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
@@ -54,5 +54,5 @@ def start(){
         }
     }
 }
-// }
+}
 }
