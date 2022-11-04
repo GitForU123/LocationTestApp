@@ -1,6 +1,6 @@
 package com.rnlocation
 def start(){
- pipeline {
+//  pipeline {
     agent any
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
@@ -53,5 +53,5 @@ def start(){
             archiveArtifacts '**/*.html'
         }
     }
-}
+// }
 }
