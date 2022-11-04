@@ -1,6 +1,7 @@
 package com.rnlocation
 def start(){
    pipeline {
+ pipeline {
     agent any
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
@@ -60,4 +61,16 @@ def sonarqubeAnalysis(){
         echo 'sonarqube is running'
         sh "${scannerHome}/bin/sonar-scanner"
     }
+            }
+  }
+   
+}
+    // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
+    post {
+        always {
+            // junit '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts '**/*.html'
+        }
+    }
+}
 }
