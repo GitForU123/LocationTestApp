@@ -1,9 +1,6 @@
 package com.rnlocation
 def start(){
-    echo 'Welcome to Shared Library'
-    echo 'pipline stage will start here'
-
-pipeline {
+ pipeline {
     agent any
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
