@@ -7,6 +7,7 @@ def start(){
 //     }
 //     stages {
         // implicit checkout stage
+        node{
         stage('CheckOut'){
             gitClone()
  }
@@ -23,13 +24,14 @@ def start(){
    
 // }
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
-    post {
-        always {
-            // junit '**/target/surefire-reports/TEST-*.xml'
-            archiveArtifacts '**/*.html'
-        }
-    }
+//     post {
+//         always {
+//             // junit '**/target/surefire-reports/TEST-*.xml'
+//             archiveArtifacts '**/*.html'
+//         }
+//     }
 // }
+        }
 }
 
 def gitClone(){
