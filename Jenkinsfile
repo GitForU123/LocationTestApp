@@ -28,15 +28,15 @@ pipeline {
                 echo "${params.Greeting} World!"
             }
         }
-//              stage('Test'){
-//             steps{
-//                 nodejs(nodeJSInstallationName: 'NodeJS1'){
-//     echo 'nodejs tool is running'
-//     sh 'npm install' 
-//    sh 'npm run test --watchAll'
-//                 }
-//             }
-//  }
+             stage('Test'){
+            steps{
+                nodejs(nodeJSInstallationName: 'NodeJS1'){
+    echo 'nodejs tool is running'
+    sh 'npm install' 
+   sh 'npm test -- --coverage'
+                }
+            }
+ }
         stage('SonarQube Analysis') {
             steps{
                 //     def scannerHome = tool 'SQ1';
