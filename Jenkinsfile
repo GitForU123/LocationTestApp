@@ -30,8 +30,12 @@ pipeline {
                 echo "${params.Greeting} World!"
             }
         }
-        if(test){
+     
              stage('Test'){
+                 when {
+                // Only say hello if a "greeting" is requested
+                expression { params.test == 'true' }
+            }
             steps{
                 nodejs(nodeJSInstallationName: 'NodeJS1'){
     echo 'nodejs tool is running'
@@ -39,10 +43,13 @@ pipeline {
    sh 'npm test -- --coverage'
                 }
             }
- }
         }
-        if(sonarAnalysis){
+       
         stage('SonarQube Analysis') {
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { params.sonarAnalysis == 'true' }
+            }
             steps{
                 //     def scannerHome = tool 'SQ1';
                 script {
@@ -57,7 +64,7 @@ pipeline {
         sh "${scannerHome}/bin/sonar-scanner"
     }
             }
-  }
+  
         }
    
 }
