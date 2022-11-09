@@ -10,13 +10,13 @@ pipeline {
     }
     stages {
         // implicit checkout stage
-        stage('CheckOut'){
-            steps{
+//         stage('CheckOut'){
+//             steps{
 
             
-    git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
-            }
- }
+//     git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
+//             }
+//  }
 
         // stage('Build') {
         //     steps {
@@ -26,6 +26,7 @@ pipeline {
        stage('Example') {
             steps {
                 echo "${params.Greeting} World!"
+                echo "this is running due to PR request from PR1-Test Jenkins file"
             }
         }
              stage('Test'){
