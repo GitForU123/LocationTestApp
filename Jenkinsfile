@@ -28,6 +28,7 @@ pipeline {
        stage('Example') {
             steps {
                 echo "${params.Greeting} World!"
+                echo "now should run through webhookn configured"
             }
         }
      
