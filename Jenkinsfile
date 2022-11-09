@@ -7,6 +7,8 @@ pipeline {
 //     tools {tool 'SQInstance1'}
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+         string(name: 'test', defaultValue: 'true', description:'whether to run the test case')
+         string(name: 'sonarAnalysis', defaultValue: 'false', description:'whether to run sonar Analysis')
     }
     stages {
         // implicit checkout stage
@@ -28,6 +30,7 @@ pipeline {
                 echo "${params.Greeting} World!"
             }
         }
+        if(test){
              stage('Test'){
             steps{
                 nodejs(nodeJSInstallationName: 'NodeJS1'){
@@ -37,6 +40,8 @@ pipeline {
                 }
             }
  }
+        }
+        if(sonarAnalysis){
         stage('SonarQube Analysis') {
             steps{
                 //     def scannerHome = tool 'SQ1';
@@ -53,6 +58,7 @@ pipeline {
     }
             }
   }
+        }
    
 }
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
