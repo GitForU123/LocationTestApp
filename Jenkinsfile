@@ -92,10 +92,10 @@ pipeline {
     //         '''.stripMargin().stripIndent()
     //     }
     // }
-    }
 
     when{
         expression{ currentBuild.currentResult == SUCCESS}
         echo 'build was successfull'
+    }
     }
 }
