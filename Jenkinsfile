@@ -94,7 +94,7 @@ pipeline {
     // }
 
     always{
-        echo 'current build status : "${currentBuild.currentResult}"'
+        echo "current build status : ${currentBuild.currentResult}"
     }
     }
 }
