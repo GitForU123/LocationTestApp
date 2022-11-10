@@ -79,18 +79,23 @@ pipeline {
 //             junit '**/target/surefire-reports/TEST-*.xml'
 //             archiveArtifacts 'target/*.jar'
 //         }
-        success {
-        sh 'echo "Pipeline succeeded"'
-        sh 'rm -rf "${WORKSPACE}"/* '
+    //     success {
+    //     sh 'echo "Pipeline succeeded"'
+    //     sh 'rm -rf "${WORKSPACE}"/* '
          
+    // }
+    // failure {
+    //     script {
+    //         sh '''
+    //         |echo "This job failed"
+    //         |echo "And I am not sure why"
+    //         '''.stripMargin().stripIndent()
+    //     }
+    // }
     }
-    failure {
-        script {
-            sh '''
-            |echo "This job failed"
-            |echo "And I am not sure why"
-            '''.stripMargin().stripIndent()
-        }
-    }
+
+    when{
+        expression{ currentBuild.currentResult == SUCCESS}
+        echo 'build was successfull'
     }
 }
