@@ -93,9 +93,8 @@ pipeline {
     //     }
     // }
 
-    when{
-        expression{ currentBuild.currentResult == SUCCESS}
-        echo 'build was successfull'
+    always{
+        echo 'current build status : "${currentBuild.currentResult}"'
     }
     }
 }
