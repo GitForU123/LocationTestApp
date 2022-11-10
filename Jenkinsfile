@@ -27,6 +27,8 @@ pipeline {
             steps {
                 echo "${params.Greeting} World!"
                 echo "this is running due to PR request from PR1-Test Jenkins file"
+                 echo "current jenkins_home : ${env.JENKINS_HOME}"
+                echo "current working space : ${WORKSPACE}"
             }
         }
              stage('Test'){
