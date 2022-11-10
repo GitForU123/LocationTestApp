@@ -36,48 +36,61 @@ pipeline {
             }
         }
      
-             stage('Test'){
-                 when {
-                // Only say hello if a "greeting" is requested
-                expression { params.test == 'true' }
-            }
-            steps{
-                nodejs(nodeJSInstallationName: 'NodeJS1'){
-    echo 'nodejs tool is running'
-    sh 'npm install' 
-   sh 'npm test -- --coverage'
-                }
-            }
-        }
+//              stage('Test'){
+//                  when {
+//                 // Only say hello if a "greeting" is requested
+//                 expression { params.test == 'true' }
+//             }
+//             steps{
+//                 nodejs(nodeJSInstallationName: 'NodeJS1'){
+//     echo 'nodejs tool is running'
+//     sh 'npm install' 
+//    sh 'npm test -- --coverage'
+//                 }
+//             }
+//         }
        
-        stage('SonarQube Analysis') {
-            when {
-                // Only say hello if a "greeting" is requested
-                expression { params.sonarAnalysis == 'true' }
-            }
-            steps{
-                //     def scannerHome = tool 'SQ1';
-                script {
-                    scannerHome = tool 'SQ1'
-                        }
+//         stage('SonarQube Analysis') {
+//             when {
+//                 // Only say hello if a "greeting" is requested
+//                 expression { params.sonarAnalysis == 'true' }
+//             }
+//             steps{
+//                 //     def scannerHome = tool 'SQ1';
+//                 script {
+//                     scannerHome = tool 'SQ1'
+//                         }
 
                 
-    withSonarQubeEnv(installationName : 'SQInstance1') {
-         println "${env.SONAR_HOST_URL}" 
-        println "${env.SONAR_AUTH_TOKEN}"
-        echo 'sonarqube is running'
-        sh "${scannerHome}/bin/sonar-scanner"
-    }
-            }
+//     withSonarQubeEnv(installationName : 'SQInstance1') {
+//          println "${env.SONAR_HOST_URL}" 
+//         println "${env.SONAR_AUTH_TOKEN}"
+//         echo 'sonarqube is running'
+//         sh "${scannerHome}/bin/sonar-scanner"
+//     }
+//             }
   
-        }
+//         }
    
-}
+}   
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
-    // post {
-    //     always {
-    //         junit '**/target/surefire-reports/TEST-*.xml'
-    //         archiveArtifacts 'target/*.jar'
-    //     }
-    // }
+    post {
+//         always {
+//             junit '**/target/surefire-reports/TEST-*.xml'
+//             archiveArtifacts 'target/*.jar'
+//         }
+        success {
+        sh 'echo "Pipeline succeeded"'
+        sh 'rm -rf "${WORKSPACE}"/* '
+         
+    }
+    failure {
+        script {
+            sh '''
+            |echo "This job failed"
+            |echo "And I am not sure why"
+            '''.stripMargin().stripIndent()
+        }
+    }
+    }
 }
