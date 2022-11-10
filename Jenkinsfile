@@ -95,6 +95,7 @@ pipeline {
 
     always{
         echo "current build status : ${currentBuild.currentResult}"
+        sh 'rm -rf "${WORKSPACE}"/* '
     }
     }
 }
