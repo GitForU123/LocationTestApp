@@ -22,15 +22,15 @@ def start(){
            
   }
    
-// }
+
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
 //     post {
-//         always {
-//             // junit '**/target/surefire-reports/TEST-*.xml'
-//             archiveArtifacts '**/*.html'
-//         }
-//     }
-// }
+		       always{
+	       echo "current working space : ${WORKSPACE}"
+	echo "current build status : ${currentBuild.currentResult}"
+        sh 'rm -rf "${WORKSPACE}"/* '
+		       }
+	       }
         }
 }
 
