@@ -14,13 +14,13 @@ def start(){
        stage('Example') {
             greeting()
         }
-             stage('Test'){
-            runTest()
- }
-        stage('SonarQube Analysis') {
-            sonarqubeAnalysis()
+//              stage('Test'){
+//             runTest()
+//  }
+//         stage('SonarQube Analysis') {
+//             sonarqubeAnalysis()
            
-  }
+//   }
    
 
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
