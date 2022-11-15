@@ -24,6 +24,7 @@ def start(){
    
 
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
+		script{
     post {
 		       always{
 	       echo "current working space : ${WORKSPACE}"
@@ -31,6 +32,7 @@ def start(){
         sh 'rm -rf "${WORKSPACE}"/* '
 		       }
 	       }
+		}
         }
 }
 
