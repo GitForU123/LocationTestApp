@@ -9,7 +9,9 @@ def start(){
         // implicit checkout stage
         node{
         stage('CheckOut'){
+		retry(2){
             gitClone()
+		}
  }
        stage('Example') {
             greeting()
@@ -22,23 +24,23 @@ def start(){
            
 //   }
    
-	}
+	} // node close
     // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
-	script{	
-    post {
-		       always{
-	       echo "current working space : ${WORKSPACE}"
-	echo "current build status : ${currentBuild.currentResult}"
-        sh 'rm -rf "${WORKSPACE}"/* '
-		       }
-	       }
-	}
+// 	script{	
+//     post {
+// 		       always{
+// 	       echo "current working space : ${WORKSPACE}"
+// 	echo "current build status : ${currentBuild.currentResult}"
+//         sh 'rm -rf "${WORKSPACE}"/* '
+// 		       }
+// 	       }
+// 	}
 		
         
-}
+} // pipline ends
 
 def gitClone(){
- git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
+ git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApps.git'
 }
 
 def greeting(){
