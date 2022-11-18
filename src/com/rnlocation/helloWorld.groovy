@@ -13,7 +13,6 @@ def start(){
             gitClone()
 		}catch (err){
 		sh '''
-// 		error "Something went wrong!"
 		echo 'retrying'
 		git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
 		currentBuild.result = 'SUCCESS'
