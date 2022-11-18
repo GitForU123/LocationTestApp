@@ -9,8 +9,12 @@ def start(){
         // implicit checkout stage
         node{
         stage('CheckOut'){
-		retry(2){
+		try{
             gitClone()
+		}catch (err){
+		error "Something went wrong! $err"
+		echo 'retrying'
+		git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
 		}
  }
        stage('Example') {
