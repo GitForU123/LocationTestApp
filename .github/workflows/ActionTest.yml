@@ -6,6 +6,7 @@ on:
 jobs:
   firstJob : 
     runs-on : ubuntu-latest
+    environment: ENV_SECRETS
     steps:
       - name: "prints this is first job"
         env:
@@ -20,8 +21,6 @@ jobs:
             echo "secret env2 ${super_secret}"
             echo "${{secrets.FAVSPORT}}" | sed 's/./& /g'
             echo "${{secrets.FAV_COLOR}}" | sed 's/./& /g'
-            echo "${{secrets.ENV_SECRETS}}" | sed 's/./& /g'
-            echo "${{secrets.ENV_SECRETS_FAV_COLOR}}" | sed 's/./& /g'
             
 
   secondJob : 
