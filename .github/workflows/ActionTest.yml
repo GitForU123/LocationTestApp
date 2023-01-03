@@ -8,8 +8,8 @@ jobs:
     runs-on : ubuntu-latest
     steps:
       - name: "prints this is first job"
-        env :
-          super_secret : ${{secrets.FAVSPORT}} # setting super_secret as env variable
+        env:
+          super_secret: ${{secrets.FAVSPORT}} # setting super_secret as env variable
         run: |
             echo "this is first job"
             echo ${{github.actor}}
