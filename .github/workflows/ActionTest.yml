@@ -10,7 +10,7 @@ jobs:
       - name: "prints this is first job"
         env:
           normal_env : "I am secret"
-          super_secret: ${{secrets.FAVSPORT}} # setting super_secret as env variable
+          super_secret: '${{secrets.FAVSPORT}}' # setting super_secret as env variable
         run: |
             echo "1 this is first job"
             echo ${{github.actor}}
