@@ -9,17 +9,16 @@ jobs:
     steps:
       - name: "prints this is first job"
         env:
+          normal_env : "I am secret"
           super_secret: ${{secrets.FAVSPORT}} # setting super_secret as env variable
         run: |
             echo "this is first job"
             echo ${{github.actor}}
-            echo "my fav color ${super_secret}"
-            echo ${{secrets.FAVCOLER}}
-            echo " mysecret1 : ${secrets.MYSECRET}"
-            echo "fav color1 : ${secrets.MYSECRET.FAVCOLER}"
-            echo "fav color2 : ${secrets.MYSECRET}.FAVCOLER"
-            echo "fav color3 : ${{secrets.MYSECRET.FAVCOLER}}"
-            echo "fav color4 : ${{secrets.MYSECRET}}.FAVCOLER"
+            echo "$normal_env"
+            echo "secret env1 $super_secret"
+            echo "${normal_env}"
+            echo "secret env2 ${super_secret}"
+            
 
   secondJob : 
     runs-on : windows-latest
