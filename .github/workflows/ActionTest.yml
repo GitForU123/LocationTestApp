@@ -14,11 +14,11 @@ jobs:
         run: |
             echo "1 this is first job"
             echo ${{github.actor}}
-            echo "$normal_env"
-            echo "secret env1 $super_secret"
+            echo "$normal_env" | sed 's/./& /g'
+            echo "secret env1 $super_secret" | sed 's/./& /g'
             echo "2 ${normal_env}"
             echo "secret env2 ${super_secret}"
-            echo "${{secrets.FAVSPORT}}"
+            echo "${{secrets.FAVSPORT}}" | sed 's/./& /g'
             
 
   secondJob : 
