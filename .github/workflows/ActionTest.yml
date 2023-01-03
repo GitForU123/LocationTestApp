@@ -13,7 +13,7 @@ jobs:
         run: |
             echo "this is first job"
             echo ${{github.actor}}
-            echo "my fav color $super_secret"
+            echo "my fav color ${super_secret}"
 
   secondJob : 
     runs-on : windows-latest
