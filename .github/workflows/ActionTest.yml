@@ -15,6 +15,11 @@ jobs:
             echo ${{github.actor}}
             echo "my fav color ${super_secret}"
             echo ${{secrets.FAVCOLER}}
+            echo " mysecret1 : ${secrets.MYSECRET}"
+            echo "fav color1 : ${secrets.MYSECRET.FAVCOLER}"
+            echo "fav color2 : ${secrets.MYSECRET}.FAVCOLER"
+            echo "fav color3 : ${{secrets.MYSECRET.FAVCOLER}}"
+            echo "fav color4 : ${{secrets.MYSECRET}}.FAVCOLER"
 
   secondJob : 
     runs-on : windows-latest
