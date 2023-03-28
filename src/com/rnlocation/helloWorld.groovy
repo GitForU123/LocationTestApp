@@ -7,8 +7,12 @@ def start(){
 //     }
 //     stages {
         // implicit checkout stage
+        timestamps{
+            
+        
         node{
         stage('CheckOut'){
+            killPreviousPRJob()
             gitClone()
  }
        stage('Example') {
@@ -32,6 +36,7 @@ def start(){
 //     }
 // }
         }
+}
 }
 
 def gitClone(){
@@ -62,4 +67,23 @@ def sonarqubeAnalysis(){
         echo 'sonarqube is running'
         sh "${scannerHome}/bin/sonar-scanner"
     }
+}
+
+
+def killPreviousPRJob{
+def jobName = env.JOB_NAME
+// get the latest the latest build
+def pullRequestNumber = jobName.tokenize('/')[1]
+def CurrentPRjob= jenkins.model.Jenkins.instance.getItemByFullName(jobName)
+def latestBuild = currentPRjob.getBuilds().findAll{ it.description.contains("PR-${pullRequestNumber}") }.last()
+// Do something with the latest build
+echo "The latest build for PR-${pullRequestNumber} is #${latestBuild.getNumber()}"
+// Get the build IDs of previous builds
+def buildIds = currentPRjob.builds.collect { it.id }
+// Remove the ID of the latest build from the list
+buildIds.remove(latestBuild.id)
+// Abort previous builds
+for (buildId in buildIds) {
+CurrentJob.getBuildByNumber(buildId).doStop()
+}
 }
