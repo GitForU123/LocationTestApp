@@ -1,5 +1,4 @@
-package com.rnlocation
-def start(){
+import groovy.json.JsonSlurper
 //    pipeline {
 //     agent any
 //      parameters {
@@ -37,7 +36,7 @@ def start(){
 // }
         }
 }
-}
+
 
 def gitClone(){
  git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
