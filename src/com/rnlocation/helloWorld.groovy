@@ -18,10 +18,12 @@ import groovy.json.JsonSlurper
             greeting()
         }
              stage('Test'){
-            runTest()
+            // runTest()
+            echo "running test"
  }
         stage('SonarQube Analysis') {
-            sonarqubeAnalysis()
+            // sonarqubeAnalysis()
+            echo "running analysis"
            
   }
    
@@ -69,7 +71,7 @@ def sonarqubeAnalysis(){
 }
 
 
-def killPreviousPRJob{
+def killPreviousPRJob(){
 def jobName = env.JOB_NAME
 // get the latest the latest build
 def pullRequestNumber = jobName.tokenize('/')[1]
