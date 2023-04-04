@@ -70,20 +70,46 @@ def sonarqubeAnalysis(){
 }
 
 
-def killPreviousPRJob{
+def killPreviousPRJob(){
 def jobName = env.JOB_NAME
-// get the latest the latest build
-def pullRequestNumber = jobName.tokenize('/')[1]
-def CurrentPRjob= jenkins.model.Jenkins.instance.getItemByFullName(jobName)
-def latestBuild = currentPRjob.getBuilds().findAll{ it.description.contains("PR-${pullRequestNumber}") }.last()
+echo "jobName is : $jobName"
+
+// get the last Job
+def pullRequest = jobName.tokenize('/').last() 
+
+
+//echo "pullRequest is : $pullRequest"
+
+def CurrentPRjob = jenkins.model.Jenkins.instance.getItemByFullName(jobName)
+
+
+
+
+// Get the latest build builds
+def builds = CurrentPRjob.getBuilds()
+
+//get the latest build 
+
+def latestBuildNumber = 1
+for(build in builds){
+latestBuildNumber = build.getNumber() > latestBuildNumber ? build.getNumber() : latestBuildNumber
+}
+
+
 // Do something with the latest build
-echo "The latest build for PR-${pullRequestNumber} is #${latestBuild.getNumber()}"
-// Get the build IDs of previous builds
-def buildIds = currentPRjob.builds.collect { it.id }
+echo "The latest build for ${pullRequest} is #${latestBuildNumber}"
+
 // Remove the ID of the latest build from the list
-buildIds.remove(latestBuild.id)
+// buildIds.remove(latestBuildId)
+
 // Abort previous builds
-for (buildId in buildIds) {
-CurrentJob.getBuildByNumber(buildId).doStop()
+for (build in builds) {
+    def buildNumber = build.getNumber()
+    echo "build's listed : ${buildNumber}"
+  if(buildNumber != latestBuildNumber && build.isBuilding()){
+    echo "aborting build : ${buildNumber}"
+    build.doStop()
+   echo "status of build #${buildNumber} : ${build.getResult()}"
+  }
 }
 }
