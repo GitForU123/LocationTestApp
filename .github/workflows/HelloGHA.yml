@@ -14,3 +14,8 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+  some-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run : |
+          echo "how you doing"
