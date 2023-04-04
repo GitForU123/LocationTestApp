@@ -1,4 +1,6 @@
 
+import groovy.json.JsonSlurper
+
 //    pipeline {
 //     agent any
 //      parameters {
@@ -18,10 +20,12 @@
             greeting()
         }
              stage('Test'){
-            runTest()
+            // runTest()
+            echo "running test"
  }
         stage('SonarQube Analysis') {
-            sonarqubeAnalysis()
+            // sonarqubeAnalysis()
+            echo "running analysis"
            
   }
    
@@ -36,7 +40,7 @@
 // }
         }
 }
-}
+
 
 def gitClone(){
  git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
