@@ -37,14 +37,23 @@ import groovy.json.JsonSlurper
             // sonarqubeAnalysis()
             echo "running analysis"
 
-	}
 
+
+           
+  }
    
 	} // node close
-    
+    // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
+
+
+        }
+     
+
+
 		
         
-} 
+
+
 
 
 def gitClone(){
