@@ -2,8 +2,8 @@
 import groovy.json.JsonSlurper
 
 
-   pipeline {
-    agent any
+//    pipeline {
+//     agent any
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
@@ -14,7 +14,7 @@ import groovy.json.JsonSlurper
             
         
         node{
-		 stages {
+// 		 stages {
         stage('CheckOut'){
 
             killPreviousPRJob()
@@ -52,10 +52,10 @@ import groovy.json.JsonSlurper
         }
      
 
-    }
+//     }
 	   
 	   
-   }
+//    }
 		
         
 
