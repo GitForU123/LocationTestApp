@@ -45,12 +45,12 @@ import groovy.json.JsonSlurper
 
 
         }
-        }
+     
 
 
 		
         
-} // pipline ends
+
 
 
 def gitClone(){
