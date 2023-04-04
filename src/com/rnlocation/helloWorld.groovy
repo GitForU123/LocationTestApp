@@ -1,5 +1,4 @@
-package com.rnlocation
-def start(){
+
 //    pipeline {
 //     agent any
 //      parameters {
@@ -112,4 +111,4 @@ for (build in builds) {
    echo "status of build #${buildNumber} : ${build.getResult()}"
   }
 }
-}
+
