@@ -39,7 +39,7 @@ import groovy.json.JsonSlurper
 //     }
 // }
         }
-}
+        }
 
 
 def gitClone(){
@@ -115,4 +115,4 @@ for (build in builds) {
    echo "status of build #${buildNumber} : ${build.getResult()}"
   }
 }
-
+}
