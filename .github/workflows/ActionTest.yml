@@ -1,0 +1,38 @@
+name: Test Hello HelloGHA
+on:
+  push:
+    branches:
+      - master
+jobs:
+  firstJob : 
+    runs-on : ubuntu-latest
+    environment: ENV_SECRETS
+    steps:
+      - name: "prints this is first job"
+        env:
+          normal_env : "I am secret"
+          super_secret: '${{secrets.FAVSPORT}}' # setting super_secret as env variable
+        run: |
+            echo "1 this is first job"
+            echo ${{github.actor}}
+            echo "$normal_env" | sed 's/./& /g'
+            echo "secret env1 $super_secret" | sed 's/./& /g'
+            echo "2 ${normal_env}"
+            echo "secret env2 ${super_secret}"
+            echo "${{secrets.FAVSPORT}}" | sed 's/./& /g'
+            echo "${{secrets.FAV_COLOR}}" | sed 's/./& /g'
+            
+
+  secondJob : 
+    runs-on : windows-latest
+    needs : ["firstJob"]
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v3
+      - name : "prints I depend on firstJob"
+        run: |
+          echo "I depend on firstJob"
+          echo "This also checked out repo"
+
+
+      

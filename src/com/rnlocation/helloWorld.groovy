@@ -13,12 +13,22 @@ import groovy.json.JsonSlurper
         
         node{
         stage('CheckOut'){
+
             killPreviousPRJob()
+
+		try{
+
             gitClone()
+		}catch (err){
+		sh "echo 'retrying'"
+		git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
+		currentBuild.result = 'SUCCESS'
+		}
  }
        stage('Example') {
             greeting()
         }
+
              stage('Test'){
             // runTest()
             echo "running test"
@@ -26,24 +36,19 @@ import groovy.json.JsonSlurper
         stage('SonarQube Analysis') {
             // sonarqubeAnalysis()
             echo "running analysis"
-           
-  }
+
+
+
    
-// }
-    // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
-//     post {
-//         always {
-//             // junit '**/target/surefire-reports/TEST-*.xml'
-//             archiveArtifacts '**/*.html'
-//         }
-//     }
-// }
-        }
-        }
+	} // node close
+    
+		
+        
+} 
 
 
 def gitClone(){
- git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApp.git'
+ git branch : 'master', changelog: false, url: 'https://github.com/GitForU123/LocationTestApps.git'
 }
 
 def greeting(){
