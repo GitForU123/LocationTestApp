@@ -1,17 +1,20 @@
 
 import groovy.json.JsonSlurper
 
+
 //    pipeline {
 //     agent any
      parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
-//     stages {
+   
+
         // implicit checkout stage
         timestamps{
             
         
         node{
+// 		 stages {
         stage('CheckOut'){
 
             killPreviousPRJob()
@@ -49,7 +52,10 @@ import groovy.json.JsonSlurper
         }
      
 
-
+//     }
+	   
+	   
+//    }
 		
         
 
