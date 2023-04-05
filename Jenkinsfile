@@ -36,19 +36,19 @@ pipeline {
             }
         }
      
-//              stage('Test'){
+             stage('Test'){
 //                  when {
 //                 // Only say hello if a "greeting" is requested
 //                 expression { params.test == 'true' }
 //             }
-//             steps{
-//                 nodejs(nodeJSInstallationName: 'NodeJS1'){
-//     echo 'nodejs tool is running'
-//     sh 'npm install' 
-//    sh 'npm test -- --coverage'
-//                 }
-//             }
-//         }
+            steps{
+                nodejs(nodeJSInstallationName: 'NodeJS1'){
+    echo 'nodejs tool is running'
+    sh 'npm install' 
+   sh 'npm test -- --coverage'
+                }
+            }
+        }
        
 //         stage('SonarQube Analysis') {
 //             when {
