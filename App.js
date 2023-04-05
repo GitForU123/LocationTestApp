@@ -39,6 +39,11 @@ const App = () =>{
               <MaterialIcons name='list' color={color} size={size} />
             ),
           }}/>
+  <Tab.Screen name = "Profile" component = {Profile}  options={{
+            tabBarIcon: ({color, size}) => (
+              <MaterialIcons name='profile' color={color} size={size} />
+            ),
+          }}/>
   </Tab.Navigator>
 </NavigationContainer>
   )
