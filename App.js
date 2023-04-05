@@ -57,6 +57,9 @@ const tabBarOptions = {
   style: {
     height: '10%',
   },
+  box: {
+    height: '50%',
+  },
 };
 
 export default App;
